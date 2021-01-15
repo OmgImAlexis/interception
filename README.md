@@ -1,27 +1,23 @@
-# fetch-intercept
+# Inception
 
-[![Build Status](https://travis-ci.org/werk85/fetch-intercept.svg?branch=master)](https://travis-ci.org/werk85/fetch-intercept)
+Interceptor library for the native fetch module inspired by [fetch-intercept](https://github.com/werk85/fetch-intercept).
 
-Interceptor library for the native fetch command inspired by [angular http interceptors](https://docs.angularjs.org/api/ng/service/$http).
-
-`fetch-intercept` monkey patches the global `fetch` method and allows you the usage in Browser, Node and Webworker environments.
+`interception` returns a patched `fetch` method.
 
 ## Installation
 
 ```
-npm install fetch-intercept --save
+npm install github:OmgImAlexis/interception#develop --save
 ```
 
 ## Usage
 
-_Note_: You need to require `fetch-intercept` before you use `fetch` the first time.
+```ts
+import nodeFetch from 'node-fetch';
+import { attach } from 'interception';
 
-Make sure you have a `fetch` [compatible environment](http://caniuse.com/#search=fetch) or added a [appropriate polyfill](https://github.com/github/fetch).
-
-```js
-import fetchIntercept from 'fetch-intercept';
-
-const unregister = fetchIntercept.register({
+const { register, fetch } = attach(nodeFetch);
+const unregister = register({
     request: function (url, config) {
         // Modify the url or config here
         return [url, config];
@@ -38,7 +34,7 @@ const unregister = fetchIntercept.register({
     },
 
     responseError: function (error) {
-        // Handle an fetch error
+        // Handle a fetch error
         return Promise.reject(error);
     }
 });
@@ -49,9 +45,6 @@ fetch('http://google.com');
 // Unregister your interceptor
 unregister();
 ```
-
-## React-Native Compatibility
-Support react-native `0.17` or higher versions.
 
 ## License
 MIT

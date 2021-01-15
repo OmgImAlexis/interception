@@ -1,5 +1,3 @@
-import type { fetch as CrossFetch } from 'cross-fetch';
-
 interface FetchInterceptor {
   request?(url: string, config: any): Promise<any[]> | any[];
   requestError?(error: any): Promise<any>;
@@ -9,7 +7,7 @@ interface FetchInterceptor {
 
 let interceptors: FetchInterceptor[] = [];
 
-const interceptor = (_fetch: typeof CrossFetch, input: RequestInfo, init?: RequestInit): Promise<Response> => {
+const interceptor = (_fetch: (url: RequestInfo, init?: RequestInit | undefined) => Promise<Response>, input: RequestInfo, init?: RequestInit): Promise<Response> => {
   const reversedInterceptors = interceptors.reverse();
   let promise: Promise<any> = Promise.resolve([input, init]);
 
@@ -42,10 +40,10 @@ const interceptor = (_fetch: typeof CrossFetch, input: RequestInfo, init?: Reque
   return promise;
 };
 
-export const attach = (fetch: typeof CrossFetch) => {
+export const attach = (fetch: any) => {
   // Make sure fetch is available in the given environment
   if (!fetch) {
-    throw Error('No fetch available. Unable to register fetch-intercept');
+    throw Error('No fetch available. Unable to register interception');
   }
 
   return {

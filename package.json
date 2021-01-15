@@ -1,7 +1,7 @@
 {
-  "name": "fetch-intercept",
-  "version": "3.0.0",
-  "description": "Interceptor library for the native fetch command inspired by angular http intercepts.",
+  "name": "interception",
+  "version": "1.0.0",
+  "description": "Interceptor library for the native fetch command inspired by fetch-interceptor.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -9,12 +9,12 @@
     "build": "npx tsup ./src/index.ts --format esm,cjs --legacy-output --dts",
     "prepare": "npm run build"
   },
-  "homepage": "https://github.com/OmgImAlexis/fetch-intercept",
+  "homepage": "https://github.com/OmgImAlexis/interception",
   "bugs": {
-    "url": "https://github.com/OmgImAlexis/fetch-intercept/issues"
+    "url": "https://github.com/OmgImAlexis/interception/issues"
   },
   "repository": {
-    "url": "https://github.com/OmgImAlexis/fetch-intercept.git"
+    "url": "https://github.com/OmgImAlexis/interception.git"
   },
   "keywords": [
     "fetch",
