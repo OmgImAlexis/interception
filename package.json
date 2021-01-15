@@ -1,23 +1,20 @@
 {
   "name": "fetch-intercept",
-  "version": "2.3.1",
+  "version": "3.0.0",
   "description": "Interceptor library for the native fetch command inspired by angular http intercepts.",
-  "main": "lib/node.js",
-  "browser": "lib/browser.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "eslint . && karma start",
-    "test:watch": "karma start --no-single-run",
-    "webpack": "webpack",
-    "prepublish": "npm test && webpack && webpack -p"
+    "test": "exit 0",
+    "build": "npx tsup ./src/index.ts --format esm,cjs --legacy-output --dts",
+    "prepare": "npm run build"
   },
-  "homepage": "https://github.com/werk85/fetch-intercept",
+  "homepage": "https://github.com/OmgImAlexis/fetch-intercept",
   "bugs": {
-    "url": "https://github.com/werk85/fetch-intercept/issues",
-    "email": "legenhausen@werk85.de"
+    "url": "https://github.com/OmgImAlexis/fetch-intercept/issues"
   },
   "repository": {
-    "url": "https://github.com/werk85/fetch-intercept.git"
+    "url": "https://github.com/OmgImAlexis/fetch-intercept.git"
   },
   "keywords": [
     "fetch",
@@ -26,34 +23,27 @@
     "interceptor",
     "hooks"
   ],
-  "author": "Malte Legenhausen <legenhausen@werk85.de>",
+  "author": "Alexis Tyler <xo@wvvw.me>",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^6.5.2",
-    "babel-core": "^6.7.4",
-    "babel-eslint": "^6.0.0",
-    "babel-loader": "^6.2.4",
-    "babel-polyfill": "^6.7.4",
-    "babel-preset-es2015": "^6.6.0",
-    "copy-webpack-plugin": "^4.5.2",
-    "eslint": "^2.5.3",
-    "eslint_d": "^3.1.0",
-    "expect": "^1.16.0",
-    "exports-loader": "^0.6.3",
-    "imports-loader": "^0.6.5",
-    "isparta": "^4.0.0",
-    "istanbul-instrumenter-loader": "^0.2.0",
-    "karma": "^0.13.22",
-    "karma-chrome-launcher": "^0.2.3",
-    "karma-coverage": "^0.5.5",
-    "karma-mocha": "^0.2.2",
-    "karma-phantomjs-launcher": "^1.0.0",
-    "karma-webpack": "^1.7.0",
-    "mocha": "^2.4.5",
-    "optimist": "^0.6.1",
-    "phantomjs-prebuilt": "^2.1.7",
-    "webpack": "^1.12.14",
-    "whatwg-fetch": "^0.11.0"
+    "ava": "^3.15.0",
+    "cross-fetch": "^3.0.6",
+    "ts-node": "^9.1.1",
+    "tsup": "^3.11.0",
+    "typescript": "^4.1.3"
   },
-  "dependencies": {}
+  "files": [
+    "dist"
+  ],
+  "ava": {
+    "files": [
+      "test/**/*"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
 }
