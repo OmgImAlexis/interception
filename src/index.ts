@@ -1,5 +1,5 @@
 interface FetchInterceptor {
-  request?(url: string, config: any): Promise<any[]> | any[];
+  request?(url: string, config?: RequestInit): Promise<any[]> | any[];
   requestError?(error: any): Promise<any>;
   response?(response: Response): Response;
   responseError?(error: any): Promise<any>;
@@ -28,7 +28,7 @@ const interceptor = (_fetch: (url: RequestInfo, init?: RequestInit | undefined) 
   });
 
   // Register fetch call
-  promise = promise.then((...args) => _fetch(...args));
+  promise = promise.then((args: any[]) => _fetch(args[0], args[1]));
 
   // Register response interceptors
   reversedInterceptors.forEach(({ response, responseError }) => {
