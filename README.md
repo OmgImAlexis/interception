@@ -7,7 +7,7 @@ Interceptor library for the native fetch module inspired by [fetch-intercept](ht
 ## Installation
 
 ```
-npm install github:OmgImAlexis/interception#develop --save
+npm install github:OmgImAlexis/interception#main --save
 ```
 
 ## Usage
